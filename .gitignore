@@ -1,3 +1,6 @@
 # Build and Release Folders
 .DS_Store
 node_modules
+src/docs
+src/html
+src/json
