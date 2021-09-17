@@ -1,12 +1,15 @@
 var fs = require('fs')
 var path = require('path')
+const axios = require('axios')
 var mammoth = require("mammoth");
+const qs = require('qs')
 var { getFileList } = require('./src/utils/getFileList')
 
 
 getFileList().then(function(fileList){
 
   fileList.forEach((item,index) => {
+    if(index>0) return
     mammoth.convertToHtml({path: item}).then(function(result){
       let pathname = item.split('/')
       let filename = pathname[pathname.length-1].split(',')
@@ -33,9 +36,19 @@ getFileList().then(function(fileList){
         hotLabel: 0,
         status: 1,
       }
-      fs.writeFile(path.resolve(__dirname, `./src/json/${filename}.json`), JSON.stringify(json), res => {
-        console.log('json文件写入成功：');
-      });
+     
+      axios.post('http://portal-system-test2.jdcloud.com/news/addNews', qs.stringify(json))
+      .then(res => {
+        console.log(`表单提交结果 `, res.data)
+        if (res.data.result) {
+          fs.writeFile(path.resolve(__dirname, `./src/json/${res.data.result}.json`), JSON.stringify(json), res => {
+            console.log('json文件写入成功：');
+          });
+        }
+      })
+      .catch(error => {
+        console.error(error)
+      })
     }).done();
 
   });
