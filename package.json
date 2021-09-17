@@ -1,0 +1,22 @@
+{
+  "name": "readdocs",
+  "version": "1.0.0",
+  "description": "读取docs文档内容",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shichangchun404/readDocs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shichangchun404/readDocs/issues"
+  },
+  "homepage": "https://github.com/shichangchun404/readDocs#readme",
+  "devDependencies": {
+    "mammoth": "^1.4.18"
+  }
+}
