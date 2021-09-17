@@ -14,11 +14,12 @@ getFileList().then(function(fileList){
       let newsTitle = filename[1].replace('.docx','')
       var html = result.value; // The generated HTML
 
-      console.log('publishTime,newsTitle ', publishTime,newsTitle)
-      console.log('html ',html)
-      fs.writeFile(path.resolve(__dirname, `./src/html/${index}-${publishTime}.html`), html, res => {
+      //console.log('publishTime,newsTitle ', publishTime,newsTitle)
+      //console.log('html ',html)
+      fs.writeFile(path.resolve(__dirname, `./src/html/${filename}.html`), html, res => {
         console.log('html文件写入成功：');
       });
+      // fs.writeFileSync(path.resolve(__dirname, `./src/html/${index}.html`), html);
       
       let json = {
         newsTitle: newsTitle, // 新闻标题
@@ -32,7 +33,7 @@ getFileList().then(function(fileList){
         hotLabel: 0,
         status: 1,
       }
-      fs.writeFile(path.resolve(__dirname, `./src/json/${index}-${publishTime}.json`), JSON.stringify(json), res => {
+      fs.writeFile(path.resolve(__dirname, `./src/json/${filename}.json`), JSON.stringify(json), res => {
         console.log('json文件写入成功：');
       });
     }).done();
