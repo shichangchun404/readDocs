@@ -11,7 +11,7 @@ const postNewsApi = 'http://portal-system.jdcloud.com/news/addNews' //'http://po
 getFileList().then(function(fileList){
   console.log('文章篇数 ', fileList.length)
   fileList.forEach((item,index) => {
-    if (index>4)  return
+    // if (index>4)  return
     mammoth.convertToHtml({path: item}).then(function(result){
       let pathname = item.split('/')
       let filename = pathname[pathname.length-1].split(',')
